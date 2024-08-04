@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Based Excel-like Spreadsheet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@12.1.0/dist/handsontable.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="loginForm">
+    <h2>Login</h2>
+    <form onsubmit="return handleLogin()">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required>
+        <button type="submit">Login</button>
+    </form>
+    <button onclick="showRegistrationForm()">Register</button>
+</div>
+
+<div id="registrationForm" style="display: none;">
+    <h2>Register</h2>
+    <form onsubmit="return handleRegister()">
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" required>
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" required>
+        <button type="submit">Register</button>
+    </form>
+    <button onclick="showLoginForm()">Back to Login</button>
+</div>
+
+<div id="sheetList" style="display: none;">
+    <h3>Saved Sheets:</h3>
+    <div id="savedSheets"></div>
+    <button onclick="showSpreadsheet()">Create New Sheet</button>
+</div>
+
+<div id="spreadsheet" style="display: none;">
+    <div id="controls">
+        <input type="text" id="sheetTitle" placeholder="Enter sheet title here" onchange="updateTitle()">
+        <button onclick="newSheet()">New Sheet</button>
+        <button onclick="saveSheet()">Save Sheet</button>
+        <button onclick="deleteSheet()">Delete Sheet</button>
+        <button onclick="downloadXLSX()">Download as Excel</button>
+        <button onclick="returnToList()">Return to List</button>
+    </div>
+
+    <div id="textTools">
+        <select id="borderStyle" onchange="setBorderStyle(this.value)">
+            <option value="">Select Border</option>
+            <option value="solid">Solid</option>
+            <option value="dashed">Dashed</option>
+            <option value="dotted">Dotted</option>
+        </select>
+    </div>
+
+    <div id="hot"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/handsontable@12.1.0/dist/handsontable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
